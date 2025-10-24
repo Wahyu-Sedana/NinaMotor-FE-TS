@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { types as t, Instance } from "mobx-state-tree";
 import { UserStore } from "./UserStore";
 
@@ -18,4 +18,8 @@ export const StoreProvider = ({ children }: { children: React.ReactNode }) => {
   return (
     <StoreContext.Provider value={rootStore}>{children}</StoreContext.Provider>
   );
+};
+
+export const useStore = () => {
+  return useContext(StoreContext);
 };

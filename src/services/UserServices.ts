@@ -11,4 +11,23 @@ export default class UserService {
 
     return ApiService.post(url, userData);
   };
+
+  static register = (
+    nama: string,
+    email: string,
+    password: string,
+    cPassword: string,
+    no_telp: string
+  ) => {
+    const url = "/login";
+    let userData = {
+      nama: nama,
+      email: email,
+      password: password,
+      cPassword: cPassword,
+      no_telp: no_telp,
+    };
+
+    return ApiService.post(url, userData);
+  };
 }

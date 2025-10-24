@@ -14,7 +14,7 @@ import { RedButton } from "../components/CustomButton";
 import { useAppNavigation } from "../helpers/UseAppNavigation";
 import CustomInput from "../components/CustomInput";
 import CustomLogo from "../components/CustomLogo";
-import { useStore } from "../stores";
+import { useStore } from "../stores/RootStore";
 import { loginValidation } from "../helpers/validations/Validation";
 
 const LoginScreen = observer(() => {
@@ -58,13 +58,7 @@ const LoginScreen = observer(() => {
         validationSchema={loginValidation}
         onSubmit={handleLogin}
       >
-        {({
-          handleChange,
-          handleSubmit,
-          values,
-          errors,
-          touched,
-        }) => (
+        {({ handleChange, handleSubmit, values, errors, touched }) => (
           <View style={styles.formContainer}>
             <CustomInput
               name="mail-outline"
@@ -93,6 +87,13 @@ const LoginScreen = observer(() => {
             </TouchableOpacity>
 
             <RedButton title="Login" onPress={() => handleSubmit()} />
+
+            <View style={styles.containerRegister}>
+              <Text style={styles.text}>Don’t have an account? </Text>
+              <TouchableOpacity onPress={() => navigation.navigate("Register")}>
+                <Text style={styles.linkText}>Register now</Text>
+              </TouchableOpacity>
+            </View>
           </View>
         )}
       </Formik>
@@ -114,6 +115,20 @@ const styles = StyleSheet.create({
     fontSize: 12,
     marginBottom: 8,
     marginTop: -8,
+  },
+  containerRegister: {
+    flexDirection: "row",
+    justifyContent: "center",
+    marginTop: 20,
+  },
+  text: {
+    color: "#555",
+    fontSize: 14,
+  },
+  linkText: {
+    color: "#DC2626",
+    fontWeight: "bold",
+    fontSize: 14,
   },
 });
 
