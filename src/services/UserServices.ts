@@ -19,7 +19,7 @@ export default class UserService {
     cPassword: string,
     no_telp: string
   ) => {
-    const url = "/login";
+    const url = "/register";
     let userData = {
       nama: nama,
       email: email,
@@ -30,4 +30,9 @@ export default class UserService {
 
     return ApiService.post(url, userData);
   };
+
+  static logout = () => {
+    const url = "/logout";
+    return ApiService.post(url, [])
+  }
 }
