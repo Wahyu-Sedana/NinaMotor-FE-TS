@@ -4,7 +4,7 @@ export default class ApiService {
   private static async apiRequest(
     url: string,
     requestInit: RequestInit
-  ): Promise<{ data: any; status: number; message: string }> {
+  ): Promise<{ data: any }> {
     const fullUrl = process.env.EXPO_PUBLIC_API_URL + url;
     console.log("Request:", fullUrl, requestInit);
 
@@ -14,15 +14,11 @@ export default class ApiService {
 
       return {
         data: data.data ?? data,
-        status: data.status ?? res.status,
-        message: data.message ?? "",
       };
     } catch (error: any) {
       console.error("API Request Error:", error);
       return {
         data: null,
-        status: 500,
-        message: error.message || "Terjadi kesalahan koneksi",
       };
     }
   }
@@ -30,7 +26,7 @@ export default class ApiService {
   static async get(
     url: string,
     params?: Record<string, any>
-  ): Promise<{ data: any; status: number; message: string }> {
+  ): Promise<{ data: any }> {
     const query = params ? "?" + new URLSearchParams(params).toString() : "";
 
     const req: RequestInit = {
@@ -44,7 +40,7 @@ export default class ApiService {
   static async post(
     url: string,
     data: Record<string, any>
-  ): Promise<{ data: any; status: number; message: string }> {
+  ): Promise<{ data: any }> {
     const req: RequestInit = {
       method: "POST",
       body: JSON.stringify(data),
@@ -57,7 +53,7 @@ export default class ApiService {
   static async put(
     url: string,
     data: Record<string, any>
-  ): Promise<{ data: any; status: number; message: string }> {
+  ): Promise<{ data: any }> {
     const req: RequestInit = {
       method: "PUT",
       body: JSON.stringify(data),
@@ -70,7 +66,7 @@ export default class ApiService {
   static async patch(
     url: string,
     data: Record<string, any>
-  ): Promise<{ data: any; status: number; message: string }> {
+  ): Promise<{ data: any }> {
     const req: RequestInit = {
       method: "PATCH",
       body: JSON.stringify(data),
@@ -80,9 +76,7 @@ export default class ApiService {
     return this.apiRequest(url, req);
   }
 
-  static async delete(
-    url: string
-  ): Promise<{ data: any; status: number; message: string }> {
+  static async delete(url: string): Promise<{ data: any }> {
     const req: RequestInit = {
       method: "DELETE",
       headers: await defaultHeaders(),

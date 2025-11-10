@@ -16,6 +16,7 @@ import CustomInput from "../components/CustomInput";
 import CustomLogo from "../components/CustomLogo";
 import { useStore } from "../stores/RootStore";
 import { loginValidation } from "../helpers/validations/Validation";
+import { log } from "../helpers/Logger";
 
 const LoginScreen = observer(() => {
   const navigation = useAppNavigation();
@@ -36,10 +37,12 @@ const LoginScreen = observer(() => {
       phoneId ?? ""
     );
 
-    if (res.success) {
+    log.info(res);
+
+    if (res) {
       navigation.replace("Home");
     } else {
-      Alert.alert("Login gagal", res.message);
+      Alert.alert("Login gagal");
     }
   };
 

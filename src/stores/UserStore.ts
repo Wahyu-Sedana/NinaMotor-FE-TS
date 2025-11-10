@@ -1,13 +1,7 @@
 import { flow, types as t } from "mobx-state-tree";
 import AuthService from "../services/UserServices";
 import { log } from "../helpers/Logger";
-
-export const User = t.model("User", {
-  id: t.maybeNull(t.string),
-  nama: t.maybeNull(t.string),
-  email: t.maybeNull(t.string),
-  token: t.maybeNull(t.string),
-});
+import { User } from "./models/UserModel";
 
 export const UserStore = t
   .model("UserStore", {
@@ -28,13 +22,18 @@ export const UserStore = t
         const res = yield AuthService.login(email, password, phone_id);
         log.info(res);
 
-        if (res.status === 200) {
-          self.user = res.data.data.user;
+        if (res.data.success) {
+          self.user = User.create({
+            email: email,
+            nama: null,
+            id: null,
+            token: res.data.token,
+          });
           return { success: true, message: res.message ?? "Login berhasil" };
         } else {
           log.info(res.data);
 
-          self.error = res.message ?? "Login gagal";
+          self.error = res.data.message ?? "Login gagal";
           return { success: false, message: self.error };
         }
       } catch (err: any) {
@@ -65,8 +64,12 @@ export const UserStore = t
         );
         console.log("Register Response:", res);
 
-        if (res.status === 200) {
-          self.user = res.data.data.user ?? null;
+        if (res.data.success) {
+          self.user = User.create({
+            nama: res.data.data.nama,
+            email: res.data.data.email,
+            no_telp: res.data.data.no_telp,
+          });
           return { success: true, message: res.message ?? "Register berhasil" };
         } else {
           self.error = res.message ?? "Register gagal";
