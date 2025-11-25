@@ -28,7 +28,7 @@ const RegisterScreen = observer(() => {
       values.noTelp
     );
 
-    if (res.success) {
+    if (res.success === true) {
       Alert.alert("Success", "Account created successfully!", [
         {
           text: "OK",

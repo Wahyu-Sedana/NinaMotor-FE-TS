@@ -37,12 +37,10 @@ const LoginScreen = observer(() => {
       phoneId ?? ""
     );
 
-    log.info(res);
-
-    if (res) {
+    if (res.success === true) {
       navigation.replace("Home");
     } else {
-      Alert.alert("Login gagal");
+      Alert.alert("Login gagal", res.message);
     }
   };
 
