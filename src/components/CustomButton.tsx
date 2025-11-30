@@ -1,4 +1,5 @@
-import { StyleSheet, Text, TouchableOpacity } from "react-native";
+import { StyleSheet, TouchableOpacity } from "react-native";
+import { Text } from "@/components/GlobalUI";
 
 interface RedButtonProps {
   title: string;
@@ -8,7 +9,7 @@ interface RedButtonProps {
 export const RedButton: React.FC<RedButtonProps> = ({ title, onPress }) => {
   return (
     <TouchableOpacity style={styles.button} onPress={onPress}>
-      <Text style={styles.buttonText}>Login</Text>
+      <Text style={styles.buttonText}>{title}</Text>
     </TouchableOpacity>
   );
 };

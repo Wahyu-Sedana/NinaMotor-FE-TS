@@ -66,13 +66,16 @@ export const UserStore = t
 
         if (res.data.success) {
           self.user = User.create({
-            nama: res.data.data.nama,
-            email: res.data.data.email,
-            no_telp: res.data.data.no_telp,
+            nama: nama,
+            email: email,
+            no_telp: noTelp,
           });
-          return { success: true, message: res.message ?? "Register berhasil" };
+          return {
+            success: true,
+            message: res.data.message ?? "Register berhasil",
+          };
         } else {
-          self.error = res.message ?? "Register gagal";
+          self.error = res.data.message ?? "Register gagal";
           return { success: false, message: self.error };
         }
       } catch (err: any) {

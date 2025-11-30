@@ -1,7 +1,8 @@
 import React, { useEffect, useRef } from "react";
-import { View, Text, StyleSheet, Animated, Dimensions } from "react-native";
+import { View, StyleSheet, Animated, Dimensions } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { useAppNavigation } from "../helpers/UseAppNavigation";
+import { Text } from "@/components/GlobalUI";
 
 const SplashScreen = () => {
   const navigation = useAppNavigation();

@@ -1,7 +1,6 @@
 import React from "react";
 import {
   View,
-  Text,
   TouchableOpacity,
   StyleSheet,
   Platform,
@@ -17,6 +16,7 @@ import CustomLogo from "../components/CustomLogo";
 import { useStore } from "../stores/RootStore";
 import { loginValidation } from "../helpers/validations/Validation";
 import { log } from "../helpers/Logger";
+import { Text } from "@/components/GlobalUI";
 
 const LoginScreen = observer(() => {
   const navigation = useAppNavigation();

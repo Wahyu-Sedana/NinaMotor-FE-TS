@@ -25,7 +25,7 @@ export const registerValidation = Yup.object().shape({
     .min(6, "Kata sandi minimal 6 karakter")
     .required("Kata sandi wajib diisi"),
 
-  cPassword: Yup.string()
+  c_password: Yup.string()
     .oneOf([Yup.ref("password")], "Passwords do not match")
     .required("Confirm password is required"),
 });

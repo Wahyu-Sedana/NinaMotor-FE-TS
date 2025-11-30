@@ -16,7 +16,7 @@ export default class UserService {
     nama: string,
     email: string,
     password: string,
-    cPassword: string,
+    c_password: string,
     no_telp: string
   ) => {
     const url = "/register";
@@ -24,7 +24,7 @@ export default class UserService {
       nama: nama,
       email: email,
       password: password,
-      cPassword: cPassword,
+      c_password: c_password,
       no_telp: no_telp,
     };
 
@@ -33,6 +33,6 @@ export default class UserService {
 
   static logout = () => {
     const url = "/logout";
-    return ApiService.post(url, [])
-  }
+    return ApiService.post(url, []);
+  };
 }

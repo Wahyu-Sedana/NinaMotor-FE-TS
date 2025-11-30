@@ -1,6 +1,7 @@
-import { StyleSheet, Text } from "react-native";
+import { StyleSheet } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useStore } from "../stores/RootStore";
+import { Text } from "@/components/GlobalUI";
 
 export const HomeScreen = () => {
   const { userStore } = useStore();

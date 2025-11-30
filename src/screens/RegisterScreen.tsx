@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text, TouchableOpacity, StyleSheet, Alert } from "react-native";
+import { View, TouchableOpacity, StyleSheet, Alert } from "react-native";
 import { observer } from "mobx-react-lite";
 import { Formik } from "formik";
 import { RedButton } from "../components/CustomButton";
@@ -8,6 +8,7 @@ import CustomInput from "../components/CustomInput";
 import CustomLogo from "../components/CustomLogo";
 import { useStore } from "../stores/RootStore";
 import { registerValidation } from "../helpers/validations/Validation";
+import { Text } from "@/components/GlobalUI";
 
 const RegisterScreen = observer(() => {
   const navigation = useAppNavigation();
@@ -17,14 +18,14 @@ const RegisterScreen = observer(() => {
     email: string;
     nama: string;
     password: string;
-    cPassword: string;
+    c_password: string;
     noTelp: string;
   }) => {
     const res = await userStore.register(
       values.nama,
       values.email,
       values.password,
-      values.cPassword,
+      values.c_password,
       values.noTelp
     );
 
@@ -55,7 +56,7 @@ const RegisterScreen = observer(() => {
           nama: "",
           email: "",
           password: "",
-          cPassword: "",
+          c_password: "",
           noTelp: "",
         }}
         validationSchema={registerValidation}
@@ -109,12 +110,12 @@ const RegisterScreen = observer(() => {
             <CustomInput
               name="lock-closed-outline"
               placeholder="Confirm Password"
-              value={values.cPassword}
-              onChangeText={handleChange("cPassword")}
+              value={values.c_password}
+              onChangeText={handleChange("c_password")}
               secureTextEntry
             />
-            {touched.cPassword && errors.cPassword && (
-              <Text style={styles.errorText}>{errors.cPassword}</Text>
+            {touched.c_password && errors.c_password && (
+              <Text style={styles.errorText}>{errors.c_password}</Text>
             )}
 
             <RedButton title="Register" onPress={() => handleSubmit()} />

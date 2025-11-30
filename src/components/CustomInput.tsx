@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import { View, TextInput, StyleSheet, TouchableOpacity } from "react-native";
+import { View, StyleSheet, TouchableOpacity } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
+import { TextInput } from "@/components/GlobalUI";
 
 interface CustomInputProps {
   name: string;
