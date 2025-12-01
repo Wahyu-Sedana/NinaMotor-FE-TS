@@ -1,16 +1,15 @@
 import * as SecureStore from "expo-secure-store";
 
 const TOKEN_KEY = "token";
-export function persistToken(token: string) {
-  SecureStore.setItemAsync(TOKEN_KEY, token);
+
+export async function persistToken(token: string) {
+  await SecureStore.setItemAsync(TOKEN_KEY, token);
 }
 
-export function eraseToken() {
-  SecureStore.deleteItemAsync(TOKEN_KEY);
+export async function eraseToken() {
+  await SecureStore.deleteItemAsync(TOKEN_KEY);
 }
 
-export function getToken() {
-  const token = SecureStore.getItemAsync(TOKEN_KEY);
-
-  return token;
+export async function getToken() {
+  return await SecureStore.getItemAsync(TOKEN_KEY);
 }

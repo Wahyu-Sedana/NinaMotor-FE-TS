@@ -31,6 +31,11 @@ export default class UserService {
     return ApiService.post(url, userData);
   };
 
+  static getProfile = () => {
+    const url = "/profile";
+    return ApiService.get(url);
+  };
+
   static logout = () => {
     const url = "/logout";
     return ApiService.post(url, []);

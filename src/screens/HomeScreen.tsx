@@ -2,8 +2,9 @@ import { StyleSheet } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useStore } from "../stores/RootStore";
 import { Text } from "@/components/GlobalUI";
+import { observer } from "mobx-react";
 
-export const HomeScreen = () => {
+export const HomeScreen = observer(() => {
   const { userStore } = useStore();
   return (
     <>
@@ -14,7 +15,7 @@ export const HomeScreen = () => {
       </SafeAreaView>
     </>
   );
-};
+});
 
 const style = StyleSheet.create({
   container: {

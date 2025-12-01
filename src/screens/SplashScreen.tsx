@@ -3,6 +3,9 @@ import { View, StyleSheet, Animated, Dimensions } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { useAppNavigation } from "../helpers/UseAppNavigation";
 import { Text } from "@/components/GlobalUI";
+import { useStore } from "@/stores/RootStore";
+import { eraseToken, getToken } from "@/common/UserStorage";
+import { log } from "@/helpers/Logger";
 
 const SplashScreen = () => {
   const navigation = useAppNavigation();
@@ -10,6 +13,7 @@ const SplashScreen = () => {
   const scaleAnim = useRef(new Animated.Value(0.3)).current;
   const pulseAnim = useRef(new Animated.Value(1)).current;
   const rotateAnim = useRef(new Animated.Value(0)).current;
+  const { userStore } = useStore();
 
   useEffect(() => {
     Animated.parallel([
@@ -49,8 +53,22 @@ const SplashScreen = () => {
       })
     ).start();
 
-    const timer = setTimeout(() => {
-      navigation.replace("Login");
+    const timer = setTimeout(async () => {
+      const token = await getToken();
+      console.log(token);
+
+      if (token === undefined) {
+        return navigation.replace("Login");
+      } else {
+        const res = await userStore.getProfile();
+        log.info(res);
+        if (res.success == false) {
+          await eraseToken();
+          return navigation.replace("Login");
+        } else {
+          return navigation.replace("Home");
+        }
+      }
     }, 3000);
 
     return () => clearTimeout(timer);

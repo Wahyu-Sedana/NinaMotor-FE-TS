@@ -13,7 +13,7 @@ export default class ApiService {
       const data = await res.json();
 
       return {
-        data: data.data ?? data,
+        data: data,
       };
     } catch (error: any) {
       console.error("API Request Error:", error);
