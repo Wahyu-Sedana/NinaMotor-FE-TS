@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { StatusBar } from "expo-status-bar";
 import { AppRouter } from "./src/routes/AppRoute";
 import { StoreProvider } from "./src/stores/RootStore";

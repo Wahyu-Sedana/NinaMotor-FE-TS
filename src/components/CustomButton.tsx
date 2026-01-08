@@ -4,11 +4,21 @@ import { Text } from "@/components/GlobalUI";
 interface RedButtonProps {
   title: string;
   onPress: () => void;
+  disabled?: boolean;
 }
 
-export const RedButton: React.FC<RedButtonProps> = ({ title, onPress }) => {
+export const RedButton: React.FC<RedButtonProps> = ({
+  title,
+  onPress,
+  disabled = false,
+}) => {
   return (
-    <TouchableOpacity style={styles.button} onPress={onPress}>
+    <TouchableOpacity
+      style={[styles.button, disabled && styles.buttonDisabled]}
+      onPress={onPress}
+      disabled={disabled}
+      activeOpacity={0.8}
+    >
       <Text style={styles.buttonText}>{title}</Text>
     </TouchableOpacity>
   );
@@ -26,6 +36,11 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.3,
     shadowRadius: 8,
     elevation: 4,
+  },
+  buttonDisabled: {
+    backgroundColor: "#D1D5DB",
+    shadowColor: "#000",
+    shadowOpacity: 0.1,
   },
   buttonText: {
     color: "#FFFFFF",

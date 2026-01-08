@@ -24,7 +24,7 @@ const SplashScreen = () => {
         log.info(res);
         if (res.success == false) {
           await eraseToken();
-          return navigation.replace("Login");
+          return navigation.replace("Language");
         } else {
           return navigation.replace("Home");
         }
